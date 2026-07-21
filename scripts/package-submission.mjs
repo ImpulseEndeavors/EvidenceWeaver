@@ -108,6 +108,7 @@ const archive = await readFile(archivePath);
 await writeFile(archiveChecksumPath, `${hash(archive)}  ${slash(relative(releaseRoot, archivePath))}\n`, "utf8");
 
 const finalFiles = await filesBelow(packageDirectory);
+await rm(packageDirectory, { recursive: true, force: true });
 process.stdout.write(`Created ${archivePath}\n`);
 process.stdout.write(`Files: ${finalFiles.length} | ZIP bytes: ${archive.length} | SHA-256: ${hash(archive)}\n`);
 process.stdout.write(`Checksum: ${archiveChecksumPath}\n`);
