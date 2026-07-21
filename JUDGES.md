@@ -2,6 +2,8 @@
 
 Thank you for reviewing EvidenceWeaver. The submitted build runs locally and does not require dependency installation, an OpenAI API key, or network access.
 
+The submission archive includes `SUBMISSION-MANIFEST.json` and `SHA256SUMS.txt` at the project root. These identify the build and provide SHA-256 fingerprints for every packaged file.
+
 ## Launch in under a minute
 
 Requirement: Node.js 20.19 or newer.

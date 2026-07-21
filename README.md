@@ -52,6 +52,16 @@ node scripts/start-demo.mjs
 
 Reset is recoverable: the prior plaintext demo store and custody ledger are moved into a timestamped `data/backups/` directory. The command refuses to operate in production mode or when encrypted storage is present.
 
+## Build the judge submission ZIP
+
+After `pnpm run check` succeeds, create the allowlisted submission package with:
+
+```bash
+node scripts/package-submission.mjs
+```
+
+The resulting `.release/EvidenceWeaver-hackathon-submission.zip` contains a top-level `EvidenceWeaver/` folder, the compiled zero-install judge build, source and tests, `SUBMISSION-MANIFEST.json`, and per-file `SHA256SUMS.txt`. A checksum for the ZIP is written alongside it. The packager refuses credential-like content and never copies `.env`, API keys, Git metadata, dependencies, caches, backups, or runtime case and custody files.
+
 ## Developer setup
 
 This repository uses pnpm; do not run `npm install` over an existing pnpm-managed `node_modules` directory.
@@ -187,6 +197,7 @@ pnpm run build    # type-check and compile the production client
 pnpm start        # serve API and compiled dist/ on 127.0.0.1:8787
 pnpm run reset:demo -- --yes # archive demo changes and restore a pristine next launch
 pnpm run smoke:demo # test a dependency-free clean copy in an isolated temporary directory
+pnpm run package:submission # create the allowlisted judge ZIP and checksums
 pnpm run check    # tests followed by production build
 ```
 

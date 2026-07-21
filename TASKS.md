@@ -59,6 +59,7 @@ Updated: 2026-07-21
 - [x] Automated tamper, authentication, RBAC, origin, and encrypted-persistence tests
 - [x] Recoverable, production-refusing pristine-demo reset command
 - [x] Isolated zero-install clean-copy smoke test with release-boundary checks
+- [x] Allowlisted judge ZIP packaging with credential scan, manifest, and SHA-256 checksums
 
 ## Explicitly deferred
 

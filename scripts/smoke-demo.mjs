@@ -5,14 +5,10 @@ import { access, cp, mkdir, mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { forbiddenReleasePaths, releaseEntries } from "./release-manifest.mjs";
 
 const scriptDirectory = dirname(fileURLToPath(import.meta.url));
 const projectRoot = resolve(scriptDirectory, "..");
-const releaseEntries = [
-  ".env.example", ".gitattributes", ".gitignore", "DECISIONS.md", "JUDGES.md", "README.md", "SAFETY.md", "TASKS.md",
-  "dist", "index.html", "package.json", "pnpm-lock.yaml", "scripts", "server", "src", "tests",
-  "tsconfig.app.json", "tsconfig.json", "vite.config.ts",
-];
 
 async function availablePort() {
   const probe = createServer();
@@ -62,7 +58,7 @@ let child;
 try {
   await mkdir(cleanProject, { recursive: true });
   await copyCleanProject(cleanProject);
-  for (const forbidden of [".env", "node_modules", ".pnpm-store", ".git", "data/store.json", "data/custody.ndjson"]) {
+  for (const forbidden of forbiddenReleasePaths) {
     await assert.rejects(() => access(join(cleanProject, forbidden)), undefined, `${forbidden} must not be present in the clean copy`);
   }
 
