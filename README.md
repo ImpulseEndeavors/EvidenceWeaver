@@ -43,6 +43,15 @@ Open `http://127.0.0.1:8787`. Stop the server with `Ctrl+C`. See [JUDGES.md](./J
 
 The default mock pipeline requires no credentials and exercises the complete workflow for the bundled synthetic case. It is the recommended judge-demo mode. User-created cases require live extraction so the demo fixture can never be mistaken for findings about submitted evidence.
 
+To restore the pristine three-case demonstration, stop the server and run:
+
+```bash
+node scripts/reset-demo.mjs --yes
+node scripts/start-demo.mjs
+```
+
+Reset is recoverable: the prior plaintext demo store and custody ledger are moved into a timestamped `data/backups/` directory. The command refuses to operate in production mode or when encrypted storage is present.
+
 ## Developer setup
 
 This repository uses pnpm; do not run `npm install` over an existing pnpm-managed `node_modules` directory.
@@ -176,6 +185,8 @@ pnpm run verify:openai    # verify key authentication and model access
 pnpm test         # source-reference and schema-integrity tests
 pnpm run build    # type-check and compile the production client
 pnpm start        # serve API and compiled dist/ on 127.0.0.1:8787
+pnpm run reset:demo -- --yes # archive demo changes and restore a pristine next launch
+pnpm run smoke:demo # test a dependency-free clean copy in an isolated temporary directory
 pnpm run check    # tests followed by production build
 ```
 

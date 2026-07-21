@@ -10,6 +10,8 @@
   "scripts": {
     "dev": "concurrently -k -n api,web -c magenta,cyan \"node --watch server/index.mjs\" \"vite\"",
     "demo": "node scripts/start-demo.mjs",
+    "reset:demo": "node scripts/reset-demo.mjs",
+    "smoke:demo": "node scripts/smoke-demo.mjs",
     "build": "tsc -b && vite build",
     "start": "node server/index.mjs",
     "configure:openai": "node scripts/configure-openai.mjs",

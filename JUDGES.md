@@ -52,6 +52,14 @@ The local judge profile is intentionally labeled as a demo. The same build also 
   Then open `http://127.0.0.1:8790`.
 
 - **Blank or missing page:** confirm the submitted archive contains `dist/index.html` and the `dist/assets/` directory.
+- **Demo was already changed:** stop the server, archive the prior demo state, and relaunch a pristine copy:
+
+  ```bash
+  node scripts/reset-demo.mjs --yes
+  node scripts/start-demo.mjs
+  ```
+
+  The reset is recoverable and reports the timestamped `data/backups/` location. It cannot reset production or encrypted storage.
 
 ## Developer and live-extraction setup
 
@@ -63,3 +71,5 @@ pnpm run dev
 ```
 
 Live extraction for user-created evidence additionally requires a server-side OpenAI API key and available API credits. The deterministic judging experience intentionally has neither dependency.
+
+Maintainers can run `node scripts/smoke-demo.mjs` to copy only release files into an isolated temporary directory, verify that no secrets, dependencies, Git metadata, caches, or prior runtime data crossed the boundary, launch with Node alone, and exercise the compiled client assets, API, evidence fingerprints, custody ledger, and manifest.

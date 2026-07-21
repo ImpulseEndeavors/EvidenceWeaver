@@ -57,6 +57,8 @@ Updated: 2026-07-21
 - [x] Human-readable custody workspace with source and ledger verification
 - [x] Manual custody note/transfer recording and verifiable manifest export
 - [x] Automated tamper, authentication, RBAC, origin, and encrypted-persistence tests
+- [x] Recoverable, production-refusing pristine-demo reset command
+- [x] Isolated zero-install clean-copy smoke test with release-boundary checks
 
 ## Explicitly deferred
 
